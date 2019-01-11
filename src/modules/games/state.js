@@ -1,5 +1,6 @@
 // datos de la aplicación
 
 export default {
-    games: []
+    games: [],
+    selectedDate: ''
 }
