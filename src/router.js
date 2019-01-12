@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'games',
-      component: () => import(/* webpackChunkName: "todos" */ './views/Games.vue')
+      name: 'home',
+      redirect: '/games'
     },
     {
       path: '/games',
