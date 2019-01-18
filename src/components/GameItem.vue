@@ -12,14 +12,23 @@
                 <b-col cols="8" class="mt-2">{{fullName(game.home_team)}}</b-col>
                 <b-col cols="2" class="mt-2"><span v-if="isVisible"><b>{{game.home_points_scored}}</b></span></b-col>
             </b-row>
+
+            <b-row>
+                <b-col cols="10">
+                    <b-button v-if="!isVisible" @click="showResult">Show result</b-button>
+                    <b-button v-if="isVisible" @click="showResult">Hide result</b-button>
+                </b-col>
+                <b-col cols="2">
+                    <b-button v-if="isVisible" @click="openGameBook"><font-awesome-icon icon="file-pdf" /></b-button>
+                </b-col>
+            </b-row>
         </div>
-        <div class="card-footer btn" v-if="!isVisible" @click="showResult">Show result</div>
-        <div class="card-footer btn" v-if="isVisible" @click="showResult">Hide result</div>
     </div>
     
 </template>
 
 <style lang="stylus">
+
     .logo
         max-height 50px
         max-width 50px
@@ -27,7 +36,7 @@
         margin auto
 
     .card
-        min-height 246px
+        min-height 250px
         font-size 24px
 
     .card-footer
@@ -36,6 +45,7 @@
 </style>
 
 <script>
+
 export default {
     data() {
         return {
@@ -49,8 +59,10 @@ export default {
         }
     },
     methods: {
+        openGameBook() {
+            window.open(`https://data.nba.net/10s/prod/v1/${this.game.event_date}/${this.game.event_id}_Book.pdf`, '_blank');
+        },
         showResult() {
-            console.log("show result");
             this.isVisible = !this.isVisible
         },
         getImg(name_team) {
